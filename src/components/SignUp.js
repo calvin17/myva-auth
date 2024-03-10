@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { PROFILE_URL_PLACEHOLDER } from '../utils/constants';
 import { checkValidData } from '../utils/validate';
 
 function Copyright(props) {
@@ -47,8 +48,7 @@ export default function SignUp({ auth, updateUser }) {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: `${data.get('firstName')} ${data.get('lastName')}`,
-            photoURL:
-              'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=100&t=st=1710045600~exp=1710046200~hmac=d30901b70ade96af56d3c95f23346d31b706fa316542cecad4d64c2498b700a0',
+            photoURL: PROFILE_URL_PLACEHOLDER,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
