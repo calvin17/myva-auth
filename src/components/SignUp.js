@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,7 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 import { checkValidData } from '../utils/validate';
 
 function Copyright(props) {
@@ -33,20 +34,30 @@ function Copyright(props) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function SignUp({ auth }) {
+export default function SignUp({ auth, updateUser }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const message = checkValidData(data.get('email'), data.get('password'));
-    console.log('message', message);
     if (!message) {
       createUserWithEmailAndPassword(auth, data.get('email'), data.get('password'))
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log('user', user);
-          navigate('/');
+          updateProfile(user, {
+            displayName: `${data.get('firstName')} ${data.get('lastName')}`,
+            photoURL:
+              'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=100&t=st=1710045600~exp=1710046200~hmac=d30901b70ade96af56d3c95f23346d31b706fa316542cecad4d64c2498b700a0',
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              updateUser({ uid, email, displayName, photoURL });
+              navigate('/');
+            })
+            .catch((error) => {
+              setErrorMessage(error);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
