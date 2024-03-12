@@ -10,7 +10,6 @@ const LoginContainer = () => {
       sx={{
         backgroundImage: `url(${BgImage})`,
         backgroundSize: 'cover',
-        height: '100vh',
         color: '#f5f5f5',
       }}
     >

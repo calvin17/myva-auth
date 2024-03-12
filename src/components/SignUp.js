@@ -31,14 +31,14 @@ function Copyright(props) {
 
 const StyledTextField = styled(TextField)`
   & label {
-    color: black;
+    color: #a4a9c2;
   }
   & label.Mui-focused {
     color: white;
   }
   & .MuiOutlinedInput-root {
     fieldset {
-      border-color: black;
+      border-color: #a4a9c2;
     }
 
     &.Mui-focused fieldset {
@@ -86,18 +86,17 @@ export default function SignUp({ auth, updateUser }) {
     <Container
       component="main"
       maxWidth="xs"
-      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
     >
       <Box
-        sx={{
-          my: 8,
+         sx={{
           mx: 4,
           p: 3,
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
           alignItems: 'center',
           width: '400px',
-          height: '500px',
           borderRadius: '12px',
           backgroundColor: 'rgba(0 0 0 / 0.5)',
         }}
