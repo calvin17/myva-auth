@@ -1,10 +1,5 @@
 {
   "framework": "vite",
-  "functions": {
-    "app/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "installCommand": "npm ci --legacy-peer-deps --no-audit --no-fund",
   "buildCommand": "npm run build"
 }
