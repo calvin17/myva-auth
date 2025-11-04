@@ -1,28 +1,28 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import federation from '@originjs/vite-plugin-federation';
+// import federation from '@originjs/vite-plugin-federation';
 
 export default defineConfig({
   plugins: [
     react(),
-    federation({
-      name: 'myva_auth',
-      filename: 'remoteEntry.js',
-      exposes: {
-        './AuthApp': './src/AuthApp.jsx',
-      },
-      shared: {
-        react: {
-          singleton: true,
-        },
-        'react-dom': {
-          singleton: true,
-        },
-        'react-router-dom': {
-          singleton: true,
-        },
-      }
-    })
+    // federation({
+    //   name: 'myva_auth',
+    //   filename: 'remoteEntry.js',
+    //   exposes: {
+    //     './AuthApp': './src/AuthApp.jsx',
+    //   },
+    //   shared: {
+    //     react: {
+    //       singleton: true,
+    //     },
+    //     'react-dom': {
+    //       singleton: true,
+    //     },
+    //     'react-router-dom': {
+    //       singleton: true,
+    //     },
+    //   }
+    // })
   ],
   build: {
     target: 'esnext',
